@@ -52,7 +52,7 @@ module.exports.signup=async(req,res,next)=>{
     }
 }
 
-module.export.logout=async(req,res,next)=>{
+module.exports.logout=async(req,res,next)=>{
     try {
         res.clearCookie("token",token,{
             httpOnly:true,
