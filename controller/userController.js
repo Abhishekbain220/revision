@@ -54,13 +54,30 @@ module.exports.signup=async(req,res,next)=>{
 
 module.exports.logout=async(req,res,next)=>{
     try {
-        res.clearCookie("token",token,{
+        res.clearCookie("token",{
             httpOnly:true,
             secure:true,
             sameSite:"None"
         })
         res.status(200).json({
             message:"Logout Successful"
+        })
+    } catch (error) {
+        console.log(error)
+        next(new CustomError(error.message,500))
+    }
+}
+
+module.exports.updateUser=async(req,res,next)=>{
+    try {
+        let {username,email,password}=req.body
+        if(username) req.user.username=username
+        if(email) req.user.email=email
+        if(password) req.user.password=password
+        await req.user.save()
+        res.status(200).json({
+            message:"User Updated Successfully",
+            user:req.user
         })
     } catch (error) {
         console.log(error)
