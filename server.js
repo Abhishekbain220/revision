@@ -16,7 +16,7 @@ app.use(cookieParser())
 app.use(morgan("tiny"))
 
 const allowedOrigins = [
-  "revision-frontend-seven.vercel.app",
+  "https://revision-frontend-seven.vercel.app",
   "http://localhost:5173",
   
 ];
